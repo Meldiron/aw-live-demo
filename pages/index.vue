@@ -79,16 +79,16 @@
 
               <div>
                 <div class="flex items-center justify-center space-x-3">
-                  <p class="text-2xl font-bold text-white">Email:</p>
-                  <div class="rounded-lg bg-white text-indigo-800 py-2 px-4">
-                    {{ email }}
-                  </div>
-                </div>
-
-                <div class="flex items-center justify-center space-x-3">
                   <p class="text-2xl font-bold text-white">Project name:</p>
                   <div class="rounded-lg bg-white text-indigo-800 py-2 px-4">
                     {{ projectName }}
+                  </div>
+                </div>
+
+                <div class="mt-10 flex items-center justify-center space-x-3">
+                  <p class="text-2xl font-bold text-white">Email:</p>
+                  <div class="rounded-lg bg-white text-indigo-800 py-2 px-4">
+                    {{ email }}
                   </div>
                 </div>
 
@@ -197,7 +197,6 @@ export default Vue.extend({
       const instance = await this.$axios.$post(
         "https://aw.matejbaco.eu/v1/customapi/instances"
       );
-      console.log(instance);
 
       this.email = instance.data.userEmail;
       this.password = instance.data.password;
