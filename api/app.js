@@ -160,7 +160,6 @@ app.post("/instances", async (req, res) => {
       }
     );
   } catch (err) {
-    console.log(err.toJSON());
     return res.json({
       success: false,
       message: `🚨 Cannot register member: ${err}`,
@@ -221,26 +220,37 @@ app.listen(process.env.API_PORT, async () => {
 
     console.log("🤖 Successfully logged into Appwrite");
   } catch (err) {
-    console.log(err.toJSON());
     console.log(`🤖 Cannot login into Appwrite: ${err}`);
     process.exit();
   }
 
   // Prepare cleanup process
-  const job = new CronJob("0 * * * * *", async () => {
+  const job = new CronJob(process.env.CLEANUP_CRON, async () => {
     console.log("🧹 Cleanup initiated");
-    await cleanup();
-    console.log("🧹 Cleanup finished");
+    const cleanupRes = await cleanup();
+    console.log(
+      "🧹 Cleanup finished. Removed " + cleanupRes.cleanedAmount + " projects"
+    );
   });
 
   job.start();
 
   console.log("🧹 Cleanup cron started.");
+
+  cleanup();
 });
 
 const cleanup = async () => {
-  // TODO: Implement cleanup
+  let cleanedAmount = 0;
+
+  try {
+    const projectsResponse = await apiServer.get("projects?limit=100");
+    console.log(projectsResponse.data);
+  } catch (err) {
+    console.err(err);
+  }
+
   return {
-    cleanedAmount: 0,
+    cleanedAmount,
   };
 };
