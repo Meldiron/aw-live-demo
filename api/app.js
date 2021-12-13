@@ -24,7 +24,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // POST createNewInstance
-app.post("/instances", async (req, res) => {
+app.post("/v1/customapi/instances", async (req, res) => {
   const companyName = faker.company.companyName();
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
@@ -178,7 +178,7 @@ app.post("/instances", async (req, res) => {
 });
 
 // POST cleanupUnusedInstances
-app.post("/cleanup", async (req, res) => {
+app.post("/v1/customapi/cleanup", async (req, res) => {
   const hash = req.body.hash;
 
   if (hash !== process.env.ADMIN_HASH) {
