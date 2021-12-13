@@ -85,6 +85,13 @@
                   </div>
                 </div>
 
+                <div class="flex items-center justify-center space-x-3">
+                  <p class="text-2xl font-bold text-white">Project name:</p>
+                  <div class="rounded-lg bg-white text-indigo-800 py-2 px-4">
+                    {{ projectName }}
+                  </div>
+                </div>
+
                 <div class="mt-4 flex items-center justify-center space-x-3">
                   <p class="text-2xl font-bold text-white">Password:</p>
                   <div class="rounded-lg bg-white text-indigo-800 py-2 px-4">
@@ -177,6 +184,7 @@ export default Vue.extend({
       isCreated: false,
       email: "",
       password: "",
+      projectName: "",
     };
   },
   methods: {
@@ -193,6 +201,7 @@ export default Vue.extend({
 
       this.email = instance.data.userEmail;
       this.password = instance.data.password;
+      this.projectName = instance.data.projectName;
 
       this.isLoading = false;
       this.isCreated = true;

@@ -245,7 +245,8 @@ const cleanup = async () => {
 
   try {
     const projectsResponse = await apiServer.get("projects?limit=100");
-    console.log(projectsResponse.data);
+    // TODO: We dont get createdAt. Find it and remove old ones
+    // console.log(projectsResponse.data);
   } catch (err) {
     console.err(err);
   }
