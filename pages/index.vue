@@ -195,7 +195,7 @@ export default Vue.extend({
 
       this.isLoading = true;
       const instance = await this.$axios.$post(
-        "https://aw-demo.matejbaco.eu/instances"
+        "https://aw.matejbaco.eu/v1/customapi/instances"
       );
       console.log(instance);
 
